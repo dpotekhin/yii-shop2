@@ -59,6 +59,7 @@ $config = [
 //                    'suffix' => ''
 //                ],
 //                '<action:(about|contact|login|logout)>' => 'site/<action>',
+                'category/<id:\d+>/page/<page:\d+>' => 'category/view',
                 'category/<id:\d+>' => 'category/view',
             ],
         ],
