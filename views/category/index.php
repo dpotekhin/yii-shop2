@@ -77,6 +77,7 @@ $this->title = 'My Yii Application';
             <div class="col-sm-3">
 
                 <div class="left-sidebar">
+
                     <h2>Category</h2>
 
                     <ul class="catalog category-products">
@@ -133,13 +134,13 @@ $this->title = 'My Yii Application';
                                     <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
                                 </div>
 
-                                <div class="product-overlay">
-                                    <div class="overlay-content">
-                                        <h2>$<?= $hit->price ?></h2>
-                                        <p><?= $hit->name ?></p>
-                                        <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-                                    </div>
-                                </div>
+<!--                                <div class="product-overlay">-->
+<!--                                    <div class="overlay-content">-->
+<!--                                        <h2>$--><?//= $hit->price ?><!--</h2>-->
+<!--                                        <p>--><?//= $hit->name ?><!--</p>-->
+<!--                                        <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>-->
+<!--                                    </div>-->
+<!--                                </div>-->
 
                                 <?php if($hit->new == '1' ): ?>
                                     <!-- <img src="/images/home/new.png" class="new" alt=""> -->
