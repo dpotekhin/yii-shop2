@@ -44,7 +44,9 @@ $config = [
                 ],
             ],
         ],
+
         'db' => $db,
+
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
@@ -55,8 +57,10 @@ $config = [
                     'suffix' => ''
                 ],
                 '<action:(about|contact|login|logout)>' => 'site/<action>',
+                'category/<id:\d+>' => 'category/view',
             ],
-        ],     
+        ],
+
     ],
     'params' => $params,
 ];
