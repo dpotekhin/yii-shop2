@@ -21,7 +21,8 @@ $(".add-to-cart")
 				if( !res ){
 					console.log("Ошибка");
 				}else {
-                    console.log("response: ", res);
+                   showCart(res);
+
                 }
 			},
 			error: function () {
@@ -30,6 +31,32 @@ $(".add-to-cart")
 
 		});
 	});
+
+function showCart(res) {
+    // console.log("response: ", res);
+    $("#cart .modal-body").html( res );
+    $("#cart").modal();
+}
+
+function clearCart() {
+    $.ajax({
+        url: '/cart/clear',
+        type: 'GET',
+        success: function (res) {
+            if( !res ){
+                console.log("Ошибка");
+            }else {
+                // console.log("response: ", res);
+                showCart(res);
+            }
+        },
+        error: function () {
+            console.log("error");
+        }
+
+    });
+}
+
 
 var RGBChange = function() {
   $('#RGB').css('background', 'rgb('+r.getValue()+','+g.getValue()+','+b.getValue()+')')
