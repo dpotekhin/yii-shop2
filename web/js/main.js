@@ -11,11 +11,14 @@ $(".add-to-cart")
 
 	.click(function(e){
 		e.preventDefault();
+
 		var id = $(this).data("id");
+        var qty = $('#qty').val();
+
 		console.log(">>>", id );
 		$.ajax({
 			url: '/cart/add',
-			data: { id: id },
+            data: { id: id, qty: qty },
 			type: 'GET',
 			success: function (res) {
 				if( !res ){
@@ -59,12 +62,16 @@ function getCart() {
 }
 
 $("#cart .modal-body").on("click", ".del-item", function (e) {
+
+	e.preventDefault();
+
 	var id = $(this).data('id');
+
 	console.log("delete item", id );
 
     $.ajax({
         url: '/cart/del-item',
-		data: {id: id},
+		data: { id: id },
         type: 'GET',
         success: function (res) {
             if( !res ){
@@ -79,6 +86,7 @@ $("#cart .modal-body").on("click", ".del-item", function (e) {
         }
 
     });
+
 
 });
 
