@@ -38,6 +38,50 @@ function showCart(res) {
     $("#cart").modal();
 }
 
+function getCart() {
+    $.ajax({
+        url: '/cart/show',
+        type: 'GET',
+        success: function (res) {
+            if( !res ){
+                console.log("Ошибка");
+            }else {
+                // console.log("response: ", res);
+                showCart(res);
+            }
+        },
+        error: function () {
+            console.log("error");
+        }
+
+    });
+	return false;
+}
+
+$("#cart .modal-body").on("click", ".del-item", function (e) {
+	var id = $(this).data('id');
+	console.log("delete item", id );
+
+    $.ajax({
+        url: '/cart/del-item',
+		data: {id: id},
+        type: 'GET',
+        success: function (res) {
+            if( !res ){
+                console.log("Ошибка");
+            }else {
+                // console.log("response: ", res);
+                showCart(res);
+            }
+        },
+        error: function () {
+            console.log("error");
+        }
+
+    });
+
+});
+
 function clearCart() {
     $.ajax({
         url: '/cart/clear',
