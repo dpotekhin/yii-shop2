@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Май 16 2018 г., 18:04
+-- Время создания: Май 18 2018 г., 18:53
 -- Версия сервера: 5.6.38
 -- Версия PHP: 7.1.12
 
@@ -91,6 +91,18 @@ CREATE TABLE `order` (
   `address` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Дамп данных таблицы `order`
+--
+
+INSERT INTO `order` (`id`, `created_at`, `updated_at`, `qty`, `sum`, `status`, `name`, `email`, `phone`, `address`) VALUES
+(20, '2018-05-18 17:13:59', '2018-05-18 17:13:59', 2, 76, '0', 'asdda', 'asda@asd.as', 'a', 'a'),
+(21, '2018-05-18 17:14:32', '2018-05-18 17:14:32', 2, 76, '0', 'asdda', 'asda@asd.as', 'aaaaa', 'a'),
+(22, '2018-05-18 17:15:54', '2018-05-18 17:15:54', 2, 76, '0', 'asdda', 'asda@asd.as', '1111111', 'asasas'),
+(23, '2018-05-18 17:18:33', '2018-05-18 17:18:33', 2, 76, '0', 'bbbbb', 'b@b.ru', '222222', '2222222222'),
+(24, '2018-05-18 18:16:09', '2018-05-18 18:16:09', 5, 236, '0', 'ass', 'mail@mail.ru', '123', '123'),
+(25, '2018-05-18 18:16:59', '2018-05-18 18:16:59', 5, 236, '0', 'ass', 'mail@mail.ru', '123', '123');
+
 -- --------------------------------------------------------
 
 --
@@ -103,9 +115,25 @@ CREATE TABLE `order_items` (
   `product_id` int(10) UNSIGNED NOT NULL,
   `name` varchar(255) NOT NULL,
   `price` float NOT NULL,
-  `qty` int(11) NOT NULL,
+  `qty_item` int(11) NOT NULL,
   `sum_item` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `order_items`
+--
+
+INSERT INTO `order_items` (`id`, `order_id`, `product_id`, `name`, `price`, `qty_item`, `sum_item`) VALUES
+(3, 22, 2, 'Джинсы MR520 MR 227 20002 0115 29-34 р Синие', 56, 1, 56),
+(4, 22, 3, 'Блуза Mango 53005681-05 M Бежевая', 20, 1, 20),
+(5, 23, 2, 'Джинсы MR520 MR 227 20002 0115 29-34 р Синие', 56, 1, 56),
+(6, 23, 3, 'Блуза Mango 53005681-05 M Бежевая', 20, 1, 20),
+(7, 24, 2, 'Джинсы MR520 MR 227 20002 0115 29-34 р Синие', 56, 1, 56),
+(8, 24, 4, 'Блуза Tom Tailor TT 20312490071 7610 M Зелёная', 70, 2, 140),
+(9, 24, 3, 'Блуза Mango 53005681-05 M Бежевая', 20, 2, 40),
+(10, 25, 2, 'Джинсы MR520 MR 227 20002 0115 29-34 р Синие', 56, 1, 56),
+(11, 25, 4, 'Блуза Tom Tailor TT 20312490071 7610 M Зелёная', 70, 2, 140),
+(12, 25, 3, 'Блуза Mango 53005681-05 M Бежевая', 20, 2, 40);
 
 -- --------------------------------------------------------
 
@@ -147,6 +175,19 @@ INSERT INTO `product` (`id`, `category_id`, `name`, `content`, `price`, `keyword
 (13, 29, 'Сумка Michael Kors Bedford Красная', '\r\n\r\nОсобенность стиля Michael Kors заключается в том, что простота его коллекций гармонирует с роскошью. Этому дизайнеру под силу объединить американский утилитаризм в манере одеваться с европейской изысканностью и шармом. Все его работы отличает изящная утонченность, которая рождается из строгих, почти примитивных линий. Все аксессуары поддерживают общий стиль человека с безупречным вкусом.\r\n\r\nМодели Michael Kors могут оставаться оригинальными, стильными и неотразимыми в течение многих лет, что особо важно для покупательниц, не желающих постоянно обновлять свой гардероб.', 0, NULL, NULL, 'no-image.png', '0', '0', '0'),
 (14, 29, 'Сумка Michael Kors JS Travel Светло-розовая', '\r\n\r\nОсобенность стиля Michael Kors заключается в том, что простота его коллекций гармонирует с роскошью. Этому дизайнеру под силу объединить американский утилитаризм в манере одеваться с европейской изысканностью и шармом. Все его работы отличает изящная утонченность, которая рождается из строгих, почти примитивных линий. Все аксессуары поддерживают общий стиль человека с безупречным вкусом.\r\n\r\nМодели Michael Kors могут оставаться оригинальными, стильными и неотразимыми в течение многих лет, что особо важно для покупательниц, не желающих постоянно обновлять свой гардероб.', 0, NULL, NULL, 'no-image.png', '0', '0', '0');
 
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `user`
+--
+
+CREATE TABLE `user` (
+  `id` int(10) NOT NULL,
+  `username` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `auth_key` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 --
 -- Индексы сохранённых таблиц
 --
@@ -176,6 +217,12 @@ ALTER TABLE `product`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Индексы таблицы `user`
+--
+ALTER TABLE `user`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT для сохранённых таблиц
 --
 
@@ -189,19 +236,25 @@ ALTER TABLE `category`
 -- AUTO_INCREMENT для таблицы `order`
 --
 ALTER TABLE `order`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT для таблицы `order_items`
 --
 ALTER TABLE `order_items`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT для таблицы `product`
 --
 ALTER TABLE `product`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
+-- AUTO_INCREMENT для таблицы `user`
+--
+ALTER TABLE `user`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
