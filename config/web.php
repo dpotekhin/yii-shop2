@@ -32,6 +32,7 @@ $config = [
         'user' => [
             'identityClass' => 'app\models\User',
             'enableAutoLogin' => true,
+//            'loginUrl' => 'cart/view', // custom login link
         ],
         'errorHandler' => [
             'errorAction' => 'site/error',
