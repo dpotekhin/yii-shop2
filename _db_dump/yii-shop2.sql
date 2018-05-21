@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Май 18 2018 г., 18:53
+-- Время создания: Май 21 2018 г., 19:41
 -- Версия сервера: 5.6.38
 -- Версия PHP: 7.1.12
 
@@ -96,12 +96,12 @@ CREATE TABLE `order` (
 --
 
 INSERT INTO `order` (`id`, `created_at`, `updated_at`, `qty`, `sum`, `status`, `name`, `email`, `phone`, `address`) VALUES
-(20, '2018-05-18 17:13:59', '2018-05-18 17:13:59', 2, 76, '0', 'asdda', 'asda@asd.as', 'a', 'a'),
+(20, '2018-05-18 17:13:59', '2018-05-18 17:13:59', 2, 76, '1', 'asdda', 'asda@asd.as', 'a', 'a'),
 (21, '2018-05-18 17:14:32', '2018-05-18 17:14:32', 2, 76, '0', 'asdda', 'asda@asd.as', 'aaaaa', 'a'),
 (22, '2018-05-18 17:15:54', '2018-05-18 17:15:54', 2, 76, '0', 'asdda', 'asda@asd.as', '1111111', 'asasas'),
 (23, '2018-05-18 17:18:33', '2018-05-18 17:18:33', 2, 76, '0', 'bbbbb', 'b@b.ru', '222222', '2222222222'),
 (24, '2018-05-18 18:16:09', '2018-05-18 18:16:09', 5, 236, '0', 'ass', 'mail@mail.ru', '123', '123'),
-(25, '2018-05-18 18:16:59', '2018-05-18 18:16:59', 5, 236, '0', 'ass', 'mail@mail.ru', '123', '123');
+(25, '2018-05-18 18:16:59', '2018-05-18 18:16:59', 5, 236, '1', 'ass', 'mail@mail.ru', '123', '123');
 
 -- --------------------------------------------------------
 
@@ -189,6 +189,13 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
+-- Дамп данных таблицы `user`
+--
+
+INSERT INTO `user` (`id`, `username`, `password`, `auth_key`) VALUES
+(1, 'admin', '$2y$13$DVjvjq17HBGCALqriYVHz.JF2sYbTCeGfryiXyQYprVFcBwmtzvQC', 'L7-GztR43980nFMHskwkN6vSGdcesxNH');
+
+--
 -- Индексы сохранённых таблиц
 --
 
@@ -254,7 +261,7 @@ ALTER TABLE `product`
 -- AUTO_INCREMENT для таблицы `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

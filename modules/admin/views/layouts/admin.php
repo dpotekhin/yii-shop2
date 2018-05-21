@@ -124,10 +124,9 @@ AppAsset::register($this);
 
     </header><!--/header-->
 
-    <?= $content ?>
-
-
-
+    <div class="container">
+        <?= $content ?>
+    </div>
 
     <?php $this->endBody() ?>
     </body>
