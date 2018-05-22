@@ -66,8 +66,10 @@ class CategoryController extends Controller
         $model = new Category();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            Yii::$app->session->setFlash('success', 'Категория добавлена: ' . $model->name);
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
+            Yii::$app->session->setFlash('error', 'Ошибка при добавлении категории: ' . $model->name);
             return $this->render('create', [
                 'model' => $model,
             ]);
@@ -85,8 +87,10 @@ class CategoryController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            Yii::$app->session->setFlash('success', 'Категория обновлена: ' . $model->name);
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
+            Yii::$app->session->setFlash('error', 'Ошибка при обновлении категории: ' . $model->name);
             return $this->render('update', [
                 'model' => $model,
             ]);
@@ -102,7 +106,7 @@ class CategoryController extends Controller
     public function actionDelete($id)
     {
         $this->findModel($id)->delete();
-
+        Yii::$app->session->setFlash('success', 'Категория удалена: ' . $model->name);
         return $this->redirect(['index']);
     }
 

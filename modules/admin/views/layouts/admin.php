@@ -125,6 +125,26 @@ AppAsset::register($this);
     </header><!--/header-->
 
     <div class="container">
+        <?php if( Yii::$app->session->hasFlash('success') ): ?>
+            <div class="alert alert-success alert-dismissible" role="alert">
+                <button class="close" type="button" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <?= Yii::$app->session->getFlash('success') ?>
+            </div>
+        <?php endif; ?>
+
+        <?php if( Yii::$app->session->hasFlash('error') ): ?>
+            <div class="alert alert-error alert-dismissible" role="alert">
+                <button class="close" type="button" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <?= Yii::$app->session->getFlash('error') ?>
+            </div>
+        <?php endif; ?>
+    </div>
+
+    <div class="container">
         <?= $content ?>
     </div>
 

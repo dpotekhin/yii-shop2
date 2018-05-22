@@ -14,6 +14,7 @@ use app\models\Category;
 class MenuWidget extends Widget
 {
     public $tpl;
+    public $model;
 
     public $data;
     public $tree;
@@ -35,8 +36,10 @@ class MenuWidget extends Widget
     public function run()
     {
         // get cache
-        $menu = \Yii::$app->cache->get( 'menu' );
-        if( $menu ) return $menu;
+        if( $this->tpl == 'menu.php' ) {
+            $menu = \Yii::$app->cache->get('menu');
+            if ($menu) return $menu;
+        }
 
         $this->data = Category::find()->indexBy('id')->asArray()->all();
         $this->tree = $this->getTree( $this->tree );
@@ -44,7 +47,9 @@ class MenuWidget extends Widget
 //        debug( $this->tree);
 
         // set cache
-        \Yii::$app->cache->set('menu', $this->menuHtml, 60 );
+        if( $this->tpl == 'menu.php' ) {
+            \Yii::$app->cache->set('menu', $this->menuHtml, 60);
+        }
 
         return $this->menuHtml;
     }
@@ -61,16 +66,16 @@ class MenuWidget extends Widget
         return $tree;
     }
 
-    public function getMenuHtml($tree)
+    public function getMenuHtml($tree, $tab = '')
     {
         $str = '';
         foreach ( $tree as $category ){
-            $str .= $this->catToTemplate( $category );
+            $str .= $this->catToTemplate( $category, $tab );
         }
         return $str;
     }
 
-    public function catToTemplate($category)
+    public function catToTemplate($category, $tab)
     {
         ob_start();
         include __DIR__ . '/menu_tpl/' . $this->tpl;
