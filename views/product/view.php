@@ -129,6 +129,7 @@ use yii\helpers\Html;
                             <p><b>Condition:</b> New</p>
                             <p><b>Brand: </b><a href="<?= \yii\helpers\Url::to('/category/'.$product->category->id ) ?>"><?= $product->category->name ?></a></p>
                             <a href=""><img src="/images/product-details/share.png" class="share img-responsive"  alt="" /></a>
+                            <p><?= $product->content ?></p>
                         </div><!--/product-information-->
                     </div>
                 </div><!--/product-details-->
