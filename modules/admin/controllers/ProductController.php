@@ -93,6 +93,13 @@ class ProductController extends Controller
                 $model->upload();
             }
 
+            unset( $model->image ); // needs to unset previous uploaded file instance
+
+            $model->gallery = UploadedFile::getInstances( $model, 'gallery');
+            if( $model->gallery ){
+                $model->uploadGallery();
+            }
+
             Yii::$app->session->setFlash( 'success', "Товар {$model->name} обновлен." );
             return $this->redirect(['view', 'id' => $model->id]);
         } else {

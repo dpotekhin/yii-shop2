@@ -76,6 +76,7 @@ class Product extends \yii\db\ActiveRecord
             'keywords' => 'Ключевые слова',
             'description' => 'Мета-описание',
             'image' => 'Фото',
+            'gallery' => 'Галерея',
             'hit' => 'Хит',
             'new' => 'Новинка',
             'sale' => 'Распродажа',
@@ -86,6 +87,22 @@ class Product extends \yii\db\ActiveRecord
         if( $this->validate() ){
             $path = 'upload/store/' . $this->image->baseName . '.' . $this->image->extension;
             $this->image->saveAs( $path );
+            $this->attachImage( $path, true );
+            @unlink($path);
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public function uploadGallery(){
+        if( $this->validate() ){
+            foreach ( $this->gallery as $file ) {
+                $path = 'upload/store/' . $file->baseName . '.' . $file->extension;
+                $file->saveAs( $path );
+                $this->attachImage($path);
+                @unlink($path);
+            }
             return true;
         }else{
             return false;
